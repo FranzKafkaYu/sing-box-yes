@@ -1,4 +1,10 @@
 {
+    "log": {
+        "disabled": false,
+        "level": "info",
+        "output": "C:\\Windows\\System32\\sing-box-1.0.3-windows-amd64\\sing-box.log",
+        "timestamp": true
+    },
     "dns": {
         "servers": [
             {
@@ -25,13 +31,14 @@
             "type": "tun",
             "inet4_address": "172.19.0.1/30",
             "auto_route": true,
+            "mtu": 1500,
             "sniff": true
         }
     ],
     "outbounds": [
         {
             "type": "shadowsocks",
-            "tag": "proxy",
+            "tag": "shadowsocks-out",
             "server": "servername.com",
             "server_port": 54126,
             "method": "2022-blake3-aes-128-gcm",
@@ -66,6 +73,7 @@
                 "outbound": "direct"
             }
         ],
-        "auto_detect_interface": true
+        "auto_detect_interface": true,
+        "final": "shadowsocks-out"
     }
 }
