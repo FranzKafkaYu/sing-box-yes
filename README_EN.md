@@ -1,11 +1,10 @@
-# sing-box-yes
-CN|[EN](./README_EN.md)  
+# sing-box-yes  
+[CN](./README.md)| EN  
+Install sing-box easily:100:  
 
-方便快捷的安装、管理sing-box:100:  
+sing-box is a universal proxy platform which support many protocols,which support:  
 
-sing-box是一个新的通用代理平台,对标*ray core与clash,目前支持以下协议:  
-
-`入站`： 
+`inbound`： 
 - Shadowsocks(including shadowsocks2022)    
 - Vmess  
 - Trojan  
@@ -18,7 +17,7 @@ sing-box是一个新的通用代理平台,对标*ray core与clash,目前支持�
 - Socks  
 - HTTP  
 
-`出站`:  
+`outbound`:  
 - Shadowsocks(including shadowsocks2022)    
 - Vmess  
 - Trojan 
@@ -30,8 +29,8 @@ sing-box是一个新的通用代理平台,对标*ray core与clash,目前支持�
 - Tor  
 - SSH
 
-针对sing-box的更多内容,请点击这里:point_right:[official site](https://sing-box.sagernet.org/)
-# 一键安装
+For more details,please check here:point_right:[official site](https://sing-box.sagernet.org/)
+# usage
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh)
 ```    
@@ -39,9 +38,8 @@ If you want install specific version,plz use coomand line as follows:
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.0.3
 ```
-# 快捷方式
-在服务器command line内输入sing-box回车即可进入管理菜单,当前菜单内容如下所示：  
-
+# quick start
+Just type `sing-box` to enter control menu,as follows showed here:
 ```
 sing-box-v0.0.1 管理脚本
   0. 退出脚本
@@ -73,8 +71,8 @@ sing-box-v0.0.1 管理脚本
 [INF] 配置文件路径:/usr/local/etc/sing-box/config.json 
 [INF] 可执行文件路径:/usr/local/bin/sing-box 
 ```   
-# 配置样例    
-- client_config.json可作为客户端配置,入站协议:`tun`,出站协议:`shadowsocks`  
-- server_config.json可作为服务端配置,入站协议:`shadowcoks`,出站协议:`direct`  
+# examples  
+- client_config.json will be used as client config,inbound:`tun`,outbound:`shadowsocks`  
+- server_config.json will be used as server config,inbound:`shadowcoks`,outbound:`direct`  
 
 
