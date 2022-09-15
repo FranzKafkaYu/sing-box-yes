@@ -493,7 +493,7 @@ show_log() {
             fi
         else
             LOGI "日志文件路径:${DEFAULT_LOG_FILE_SAVE_PATH}"
-            tail -f ${tempLog} -s 3
+            tail -f ${DEFAULT_LOG_FILE_SAVE_PATH} -s 3
         fi
     fi
 }

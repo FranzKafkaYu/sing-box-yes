@@ -1,9 +1,10 @@
 # sing-box-yes
 Install sing-box easily:100:  
+
 sing-box is a universal proxy platform which support many protocols,which support:  
 
 `inbound`： 
-- shadowsocks  
+- Shadowsocks(including shadowsocks2022)    
 - Vmess  
 - Trojan  
 - Naive  
@@ -16,7 +17,7 @@ sing-box is a universal proxy platform which support many protocols,which suppor
 - HTTP  
 
 `outbound`:  
-- shadowsocks  
+- Shadowsocks(including shadowsocks2022)    
 - Vmess  
 - Trojan 
 - Wireguard  
