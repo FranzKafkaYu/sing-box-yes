@@ -312,12 +312,22 @@ install_sing-box() {
     fi
     download_config
     if [[ ! -f "${DOWNLAOD_PATH}/sing-box-${SING_BOX_VERSION}-linux-${OS_ARCH}.tar.gz" ]]; then
+        clear_sing_box
         LOGE "could not find sing-box packages,plz check dowanload sing-box whether suceess"
         exit 1
     fi
     cd ${DOWNLAOD_PATH}
     #decompress sing-box packages
     tar -xvf sing-box-${SING_BOX_VERSION}-linux-${OS_ARCH}.tar.gz && cd sing-box-${SING_BOX_VERSION}-linux-${OS_ARCH}
+
+    if [[ $? -ne 0 ]]; then
+        clear_sing_box
+        LOGE "解压sing-box安装包失败,脚本退出"
+        exit 1
+    else
+        LOGI "解压sing-box安装包成功"
+    fi
+
     #install sing-box
     install -m 755 sing-box ${BINARY_FILE_PATH}
 
@@ -347,6 +357,12 @@ update_sing-box() {
     fi
 }
 
+clear_sing_box() {
+    LOGD "开始清除sing-box..."
+    create_or_delete_path 0 && rm -rf ${SERVICE_FILE_PATH} && rm -rf ${BINARY_FILE_PATH} && rm -rf ${SCRIPT_FILE_PATH}
+    LOGD "清除sing-box完毕"
+}
+
 #uninstall sing-box
 uninstall_sing-box() {
     LOGD "开始卸载sing-box..."
@@ -354,7 +370,7 @@ uninstall_sing-box() {
     if [ -n ${pidOfsing_box} ]; then
         stop_sing-box
     fi
-    create_or_delete_path 0 && rm -rf ${SERVICE_FILE_PATH} && rm -rf ${BINARY_FILE_PATH} && rm -rf ${SCRIPT_FILE_PATH}
+    clear_sing_box
 
     if [ $? -ne 0 ]; then
         LOGE "卸载sing-box失败,请检查日志"
