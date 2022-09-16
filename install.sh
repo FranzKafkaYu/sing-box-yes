@@ -249,7 +249,7 @@ create_or_delete_path() {
 #install some common utils
 install_base() {
     if [[ ${OS_RELEASE} == "ubuntu" || ${OS_RELEASE} == "debian" ]]; then
-        apt install wget tar
+        apt install wget tar -y
     elif [[ ${OS_RELEASE} == "centos" ]]; then
         yum install wget tar -y
     fi
@@ -258,7 +258,7 @@ install_base() {
 #download sing-box  binary
 download_sing-box() {
     LOGD "开始下载sing-box..."
-    os_check && arch_check
+    os_check && arch_check && install_base
     if [[ $# -gt 1 ]]; then
         echo -e "${red}invalid input,plz check your input: $* ${plain}"
         exit 1
