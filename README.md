@@ -83,6 +83,13 @@ sing-box-v0.0.1 管理脚本
 服务端安装时，将会自动拉取sing-box官方自带的配置模板,你可以参考`server_config.json`的内容结合官方配置文档完成服务端配置  
 客务端请自行下载对应的版本，进行客户端的配置  
 
+# 支持系统  
+- Ubuntu  
+- Centos  
+- Debian  
+- Rocky  
+- Almalinux    
+
 
 
 
