@@ -77,11 +77,8 @@ sing-box-v0.0.1 管理脚本
 [INF] 可执行文件路径:/usr/local/bin/sing-box 
 ```   
 # 配置样例    
-- client_config.json可作为客户端配置,入站协议:`tun`,出站协议:`shadowsocks`  
-- server_config.json可作为服务端配置,入站协议:`shadowcoks`,出站协议:`direct`  
-
-服务端安装时，将会自动拉取sing-box官方自带的配置模板,你可以参考`server_config.json`的内容结合官方配置文档完成服务端配置  
-客务端请自行下载对应的版本，进行客户端的配置  
+- [shadowsocks2022](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022)  
+- [shadowsocks2022+shadowTLS](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022_with_shadowTLS)   
 
 # 支持系统  
 - Ubuntu  
