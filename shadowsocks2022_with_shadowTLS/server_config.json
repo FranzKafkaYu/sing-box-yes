@@ -70,11 +70,16 @@
                 "inbound": [
                     "ss-in"
                 ],
-                "network": "tcp",
-                "outbound": "direct"
-            },
-            {
-                "geosite": "category-ads-all",
+                "geosite": [
+                    "cn",
+                    "category-ads-all"
+                ],
+                "geoip": [
+                    "cn"
+                ],
+                "source_geoip": [
+                    "private"
+                ],
                 "outbound": "block"
             },
             {
