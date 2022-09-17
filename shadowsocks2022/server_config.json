@@ -39,28 +39,6 @@
             "tcp_fast_open": true,
             "sniff": true,
             "proxy_protocol": false
-        },
-        {
-            "type": "vmess",
-            "tag": "vmess-in",
-            "listen": "0.0.0.0",
-            "listen_port": 45986,
-            "users": [
-                {
-                    "name": "franzkafka",
-                    "uuid": "bf000d23-0752-40b4-affe-68f7707a9661",
-                    "alterId": 0
-                }
-            ],
-            "tls": {
-                "enabled": true,
-                "server_name": "servername.com",
-                "certificate_path": "/root/cert/fullchain.cer",
-                "key_path": "/root/cert/servername.com.key"
-            },
-            "transport": {
-                "type": "http"
-            }
         }
     ],
     "outbounds": [
@@ -85,8 +63,7 @@
             },
             {
                 "inbound": [
-                    "ss-in",
-                    "vmess-in"
+                    "ss-in"
                 ],
                 "network": "tcp",
                 "outbound": "direct"
