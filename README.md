@@ -90,6 +90,13 @@ sing-box-v0.0.1 管理脚本
 - Rocky  
 - Almalinux    
 
+# 致谢  
+[SagerNet/sing-box](https://github.com/SagerNet/sing-box)  
+
+# star:star2:
+
+[![Stargazers over time](https://starchart.cc/FranzKafkaYu/sing-box-yes.svg)](https://starchart.cc/FranzKafkaYu/sing-box-yes)
+
 
 
 
