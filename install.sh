@@ -394,7 +394,7 @@ install_systemd_service() {
     else
         LOGI "create service file success..."
     fi
-    cat >/etc/systemd/system/sing-box.service <<EOF
+    cat >${SERVICE_FILE_PATH} <<EOF
 [Unit]
 Description=sing-box Service
 Documentation=https://sing-box.sagernet.org/
@@ -402,7 +402,7 @@ After=network.target nss-lookup.target
 Wants=network.target
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/sing-box run -c /usr/local/etc/sing-box/config.json
+ExecStart=${BINARY_FILE_PATH} run -c ${CONFIG_FILE_PATH}/config.json
 Restart=on-failure
 RestartSec=30s
 RestartPreventExitStatus=23
@@ -411,7 +411,7 @@ LimitNOFILE=1000000
 [Install]
 WantedBy=multi-user.target
 EOF
-    chmod 644 /etc/systemd/system/sing-box.service
+    chmod 644 ${SERVICE_FILE_PATH}
     systemctl daemon-reload
     LOGD "安装sing-box systemd服务成功"
 }
@@ -562,7 +562,7 @@ show_menu() {
   ${green}D.${plain} 一键申请SSL证书
  "
     show_status
-    echo && read -p "请输入选择[0-12]:" num
+    echo && read -p "请输入选择[0-C]:" num
 
     case "${num}" in
     0)
