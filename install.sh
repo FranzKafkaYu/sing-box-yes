@@ -52,6 +52,10 @@ declare -r SING_BOX_STATUS_RUNNING=1
 declare -r SING_BOX_STATUS_NOT_RUNNING=0
 declare -r SING_BOX_STATUS_NOT_INSTALL=255
 
+#log file size which will trigger log clear
+#here we set it as 25M
+declare -r DEFAULT_LOG_FILE_DELETE_TRIGGER=25
+
 #utils
 function LOGE() {
     echo -e "${red}[ERR] $* ${plain}"
@@ -287,14 +291,14 @@ download_sing-box() {
 
 #dwonload office config examples
 download_config() {
-    LOGD "开始下载sing-box官方配置模板..."
+    LOGD "开始下载sing-box配置模板..."
     if [[ ! -f "${CONFIG_FILE_PATH}/config.json" ]]; then
-        wget --no-check-certificate -O ${CONFIG_FILE_PATH}/config.json https://raw.githubusercontent.com/SagerNet/sing-box/main/release/config/config.json
+        wget --no-check-certificate -O ${CONFIG_FILE_PATH}/config.json https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/main/shadowsocks2022/server_config.json
         if [[ $? -ne 0 ]]; then
-            LOGE "下载sing-box官方配置模板失败,请检查网络"
+            LOGE "下载sing-box配置模板失败,请检查网络"
             exit 1
         else
-            LOGI "下载sing-box官方配置模板成功"
+            LOGI "下载sing-box配置模板成功"
         fi
     else
         LOGI "${CONFIG_FILE_PATH} 已存在,无需重复下载"
@@ -493,7 +497,7 @@ disable_sing-box() {
 
 #show logs
 show_log() {
-    confirm "确认是否在配置中开启日志记录" "n"
+    confirm "确认是否在配置中开启日志记录" "y"
     if [[ $? -ne 0 ]]; then
         LOGI "将从console中读取日志:"
         journalctl -u sing-box.service -e --no-pager -f
@@ -511,6 +515,64 @@ show_log() {
             LOGI "日志文件路径:${DEFAULT_LOG_FILE_SAVE_PATH}"
             tail -f ${DEFAULT_LOG_FILE_SAVE_PATH} -s 3
         fi
+    fi
+}
+
+#clear log,the paremter is log file path
+clear_log() {
+    local filePath=''
+    if [[ $# -gt 0 ]]; then
+        filePath=$1
+    else
+        read -p "请输入日志文件路径": filePath
+        if [[ ! -n ${filePath} ]]; then
+            LOGI "输入的日志文件路径无效,将使用默认的文件路径"
+            filePath=${DEFAULT_LOG_FILE_SAVE_PATH}
+        fi
+    fi
+    LOGI "日志路径为:${filePath}"
+    if [[ ! -f ${filePath} ]]; then
+        LOGE "清除sing-box 日志文件失败,${filePath}不存在,请确认"
+        exit 1
+    fi
+    fileSize=$(ls -la ${filePath} --block-size=M | awk '{print $5}' | awk -F 'M' '{print$1}')
+    if [[ ${fileSize} -gt ${DEFAULT_LOG_FILE_DELETE_TRIGGER} ]]; then
+        rm $1 && systemctl restart sing-box
+        if [[ $? -ne 0 ]]; then
+            LOGE "清除sing-box 日志文件失败"
+        else
+            LOGI "清除sing-box 日志文件成功"
+        fi
+    fi
+}
+
+#enable auto delete log，need file path as
+enable_auto_clear_log() {
+    LOGI "设置sing-box 定时清除日志..."
+    local filePath=''
+    if [[ $# -gt 0 ]]; then
+        filePath=$1
+    else
+        filePath=${DEFAULT_LOG_FILE_SAVE_PATH}
+    fi
+    if [[ ! -f ${filePath} ]]; then
+        LOGE "${filePath}不存在,设置sing-box 定时清除日志失败"
+        exit 1
+    fi
+    crontab -l >/tmp/crontabTask.tmp
+    echo "0 0 * * 6 sing-box clear ${filePath}" >>/tmp/crontabTask.tmp
+    crontab /tmp/crontabTask.tmp
+    rm /tmp/crontabTask.tmp
+    LOGI "设置sing-box 定时清除日志成功"
+}
+
+#disable auto dlete log
+disable_auto_clear_log() {
+    crontab -l | grep -v "sing-box clear" | crontab -
+    if [[ $? -ne 0 ]]; then
+        LOGI "取消sing-box 定时清除日志失败"
+    else
+        LOGI "取消sing-box 定时清除日志成功"
     fi
 }
 
@@ -533,6 +595,7 @@ show_help() {
     echo "sing-box enable       - 设置 sing-box 开机自启"
     echo "sing-box disable      - 取消 sing-box 开机自启"
     echo "sing-box log          - 查看 sing-box 日志"
+    echo "sing-box clear        - 清除 sing-box 日志"
     echo "sing-box update       - 更新 sing-box 服务"
     echo "sing-box install      - 安装 sing-box 服务"
     echo "sing-box uninstall    - 卸载 sing-box 服务"
@@ -553,13 +616,16 @@ show_menu() {
   ${green}6.${plain} 重启 sing-box 服务
   ${green}7.${plain} 查看 sing-box 状态
   ${green}8.${plain} 查看 sing-box 日志
-  ${green}9.${plain} 检查 sing-box 配置
+  ${green}9.${plain} 清除 sing-box 日志
+  ${green}A.${plain} 检查 sing-box 配置
 ————————————————
-  ${green}A.${plain} 设置 sing-box 开机自启
-  ${green}B.${plain} 取消 sing-box 开机自启
+  ${green}B.${plain} 设置 sing-box 开机自启
+  ${green}C.${plain} 取消 sing-box 开机自启
+  ${green}D.${plain} 设置 sing-box 定时清除日志&重启
+  ${green}E.${plain} 取消 sing-box 定时清除日志&重启
 ————————————————
-  ${green}C.${plain} 一键开启 bbr 
-  ${green}D.${plain} 一键申请SSL证书
+  ${green}F.${plain} 一键开启 bbr 
+  ${green}G.${plain} 一键申请SSL证书
  "
     show_status
     echo && read -p "请输入选择[0-C]:" num
@@ -593,15 +659,25 @@ show_menu() {
         show_log && show_menu
         ;;
     9)
-        config_check && show_menu
+        clear_log && show_menu
         ;;
     A)
-        enable_sing-box && show_menu
+        config_check && show_menu
         ;;
     B)
-        disable_sing-box && show_menu
+        enable_sing-box && show_menu
         ;;
     C)
+        disable_sing-box && show_menu
+        ;;
+    D)
+        enable_auto_clear_log
+        ;;
+    E)
+        disable_auto_clear_log
+        ;;
+
+    F)
         enable_bbr && show_menu
         ;;
     *)
@@ -639,6 +715,9 @@ main() {
             ;;
         "log")
             show_log
+            ;;
+        "clear")
+            clear_log
             ;;
         "update")
             update_sing-box
