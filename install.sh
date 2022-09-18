@@ -524,7 +524,7 @@ clear_log() {
     if [[ $# -gt 0 ]]; then
         filePath=$1
     else
-        read -p "请输入日志文件路径":filePath
+        read -p "请输入日志文件路径": filePath
         if [[ ! -n ${filePath} ]]; then
             LOGI "输入的日志文件路径无效,将使用默认的文件路径"
             filePath=${DEFAULT_LOG_FILE_SAVE_PATH}
