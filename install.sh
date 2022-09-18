@@ -497,7 +497,7 @@ disable_sing-box() {
 
 #show logs
 show_log() {
-    confirm "确认是否在配置中开启日志记录" "y"
+    confirm "确认是否已在配置中开启日志记录,默认开启" "y"
     if [[ $? -ne 0 ]]; then
         LOGI "将从console中读取日志:"
         journalctl -u sing-box.service -e --no-pager -f
@@ -630,7 +630,7 @@ show_menu() {
   ${green}G.${plain} 一键申请SSL证书
  "
     show_status
-    echo && read -p "请输入选择[0-C]:" num
+    echo && read -p "请输入选择[0-G]:" num
 
     case "${num}" in
     0)
@@ -683,7 +683,7 @@ show_menu() {
         enable_bbr && show_menu
         ;;
     *)
-        LOGE "请输入正确的选项 [0-C]"
+        LOGE "请输入正确的选项 [0-G]"
         ;;
     esac
 }
