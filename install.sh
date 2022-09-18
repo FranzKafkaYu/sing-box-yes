@@ -532,12 +532,17 @@ clear_log() {
     fi
     LOGI "日志路径为:${filePath}"
     if [[ ! -f ${filePath} ]]; then
-        LOGE "${filePath}不存在,请确认"
+        LOGE "清除sing-box 日志文件失败,${filePath}不存在,请确认"
         exit 1
     fi
     fileSize=$(ls -la ${filePath} --block-size=M | awk '{print $5}' | awk -F 'M' '{print$1}')
     if [[ ${fileSize} -gt ${DEFAULT_LOG_FILE_DELETE_TRIGGER} ]]; then
-        rm $1
+        rm $1 && systemctl restart sing-box
+        if [[ $? -ne 0 ]]; then
+            LOGE "清除sing-box 日志文件失败"
+        else
+            LOGI "清除sing-box 日志文件成功"
+        fi
     fi
 }
 
