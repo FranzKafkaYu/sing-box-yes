@@ -82,7 +82,9 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 ```   
 # 配置样例    
 - [shadowsocks2022](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022)  
-- [shadowsocks2022+shadowTLS](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022_with_shadowTLS)   
+- [shadowsocks2022+shadowTLS](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022_with_shadowTLS)  
+- [trojan](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/trojan)  
+- [hysteria](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/hysteria)  
 
 # 支持系统  
 - Ubuntu  
