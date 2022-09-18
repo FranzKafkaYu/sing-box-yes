@@ -543,6 +543,8 @@ clear_log() {
         else
             LOGI "清除sing-box 日志文件成功"
         fi
+    else
+        LOGI "当前日志大小为${fileSize}M,小于${DEFAULT_LOG_FILE_DELETE_TRIGGER}M,将不会清除"
     fi
 }
 
