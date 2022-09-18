@@ -535,7 +535,7 @@ clear_log() {
         LOGE "${filePath}不存在,请确认"
         exit 1
     fi
-    fileSize=$(ls-la ${filePath} --block-size=M | awk '{print $5}' | awk -F 'M' '{print$1}')
+    fileSize=$(ls -la ${filePath} --block-size=M | awk '{print $5}' | awk -F 'M' '{print$1}')
     if [[ ${fileSize} -gt ${DEFAULT_LOG_FILE_DELETE_TRIGGER} ]]; then
         rm $1
     fi
