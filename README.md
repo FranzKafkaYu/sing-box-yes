@@ -46,7 +46,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 在服务器command line内输入sing-box回车即可进入管理菜单,当前菜单内容如下所示：  
 
 ```
-sing-box-v0.0.1 管理脚本
+  sing-box-v0.0.1 管理脚本
   0. 退出脚本
 ————————————————
   1. 安装 sing-box 服务
@@ -57,24 +57,28 @@ sing-box-v0.0.1 管理脚本
   6. 重启 sing-box 服务
   7. 查看 sing-box 状态
   8. 查看 sing-box 日志
-  9. 检查 sing-box 配置
+  9. 清除 sing-box 日志
+  A. 检查 sing-box 配置
 ————————————————
-  A. 设置 sing-box 开机自启
-  B. 取消 sing-box 开机自启
+  B. 设置 sing-box 开机自启
+  C. 取消 sing-box 开机自启
+  D. 设置 sing-box 定时清除日志&重启
+  E. 取消 sing-box 定时清除日志&重启
 ————————————————
-  C. 一键开启 bbr 
-  D. 一键申请SSL证书
+  F. 一键开启 bbr 
+  G. 一键申请SSL证书
  
 [INF] 版本信息:sing-box 1.0.4.d2add33 (go1.19.1, linux/amd64, CGO disabled) 
 [INF] sing-box状态: 已运行
 [INF] sing-box是否开机自启: 是
 [INF] ##################### 
-[INF] 进程ID:2615900 
-[INF] 运行时长：Thu 2022-09-15 16:29:14 CST; 1s ago  
-[INF] 内存占用:11488 kB 
+[INF] 进程ID:303895 
+[INF] 运行时长：Sun 2022-09-18 14:52:42 CST; 1min 42s ago  
+[INF] 内存占用:14336 kB 
 [INF] ##################### 
 [INF] 配置文件路径:/usr/local/etc/sing-box/config.json 
 [INF] 可执行文件路径:/usr/local/bin/sing-box 
+
 ```   
 # 配置样例    
 - [shadowsocks2022](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022)  
