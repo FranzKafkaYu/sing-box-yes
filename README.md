@@ -77,9 +77,29 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 [INF] 内存占用:14336 kB 
 [INF] ##################### 
 [INF] 配置文件路径:/usr/local/etc/sing-box/config.json 
-[INF] 可执行文件路径:/usr/local/bin/sing-box 
+[INF] 可执行文件路径:/usr/local/bin/sing-box   
 
 ```   
+
+# 使用说明  
+安装完sing-box后,你可能需要遵循以下几步方能正常使用：  
+
+1)配置服务端：脚本默认路径为`/usr/local/etc/sing-box/config.json`,请使用`nano`或者`vim`进行编辑,具体的内容可以参考下方的配置样例部分,请依据个人实际情况进行填写  
+2)配置检查：编辑保存好配置文件后，尽可能使用脚本提供的配置文件检查功能进行检查，该功能会对配置的格式进行检查确认，请确保检查通过  
+3)重启sing-box：配置检查通过后，可以使用脚本中的重启功能重启`sing-box`，观察`sing-box`是否正常工作,请确保其正常工作  
+4)下载客户端：请根据运行环境自行下载客户端，解压获得可执行文件  
+5)下载geo数据：客户端运行需要`geoip.db`,`geosite.db`文件，请手动下载geo数据放入与`sing-box`执行文件同级目录下  
+6)配置客户端：请将`client_config.json`放入与`sing-box`可执行文件同级目录下,对照配置模板并结合个人实际情况进行修改填写  
+7)运行客户端：  
+Windows下请以管理员打开命令行工具（推荐PowerShell），使用如下命令运行客户端：  
+```
+sing-box.exe run -c client_config.json  
+```  
+Linux下请以Root用户运行客户端:
+```
+sing-box run -c client_config.json
+```  
+
 # 配置样例    
 - [shadowsocks2022](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022)  
 - [shadowsocks2022+shadowTLS](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022_with_shadowTLS)  
