@@ -2,7 +2,7 @@
 [CN](./README.md)| EN  
 Install sing-box easily:100:  
 
-sing-box is a universal proxy platform which support many protocols,which support:  
+sing-box is a universal proxy platform which supports many protocols.Currently it supports:  
 
 `inbound`： 
 - Shadowsocks(including shadowsocks2022)    

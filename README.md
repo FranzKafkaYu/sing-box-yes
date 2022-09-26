@@ -38,9 +38,9 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 ```    
 执行后会自行显示管理菜单，通过菜单选项`1`将会自动安装最新release版本。与此同时，你也可以通过`sing-box install`来安装最新版本。  
 
-如果你想安装某个特定版本,请使用以下命令,将`1.0.3`替换为特定版本号即可。  
+如果你想安装某个特定版本(包括Pre-release),请使用以下命令,将`1.1-beta8`替换为特定版本号即可。  
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.0.3
+bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.1-beta8
 ```
 # 快捷方式
 在服务器command line内输入sing-box回车即可进入管理菜单,当前菜单内容如下所示：  
