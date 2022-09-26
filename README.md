@@ -36,11 +36,19 @@ sing-box是一个新的通用代理平台,对标*ray core与clash,且具有许�
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh)
 ```    
-执行后会自行显示管理菜单，通过菜单选项`1`将会自动安装最新release版本。与此同时，你也可以通过`sing-box install`来安装最新版本。  
+执行后会自行显示管理菜单，通过菜单选项`1`将会自动安装最新release版本。与此同时，你也可以通过`sing-box install`来安装最新版本    
 
-如果你想安装某个特定版本(包括Pre-release),请使用以下命令,将`1.1-beta8`替换为特定版本号即可。  
+如果你想安装某个特定版本(包括Pre-release),请使用以下命令,将`1.1-beta8`替换为特定版本号即可    
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.1-beta8
+```  
+如果在安装后想更新到最新的release版本,且保留原有的配置文件,请使用如下命令或通过菜单选项`2`进行更新  
+```
+sing-box update 
+```
+如果在安装后想更新到某个特定版本(包括Pre-release),且保留原有的配置文件,请使用如下命令进行更新,将`1.1-beta8`替换为特定版本号即可
+```
+sing-box update 1.1-beta8
 ```
 # 快捷方式
 在服务器command line内输入sing-box回车即可进入管理菜单,当前菜单内容如下所示：  
