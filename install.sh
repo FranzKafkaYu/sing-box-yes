@@ -27,19 +27,22 @@ OS_ARCH=''
 SING_BOX_VERSION=''
 
 #script version
-SING_BOX_YES_VERSION='0.0.1'
+SING_BOX_YES_VERSION='0.0.2'
 
 #package download path
 DOWNLAOD_PATH='/usr/local/sing-box'
 
-#scritp install path
-SCRIPT_FILE_PATH='/usr/local/sbin/sing-box'
+#backup config path
+CONFIG_BACKUP_PATH='/usr/local/etc'
 
 #config install path
 CONFIG_FILE_PATH='/usr/local/etc/sing-box'
 
 #binary install path
 BINARY_FILE_PATH='/usr/local/bin/sing-box'
+
+#scritp install path
+SCRIPT_FILE_PATH='/usr/local/sbin/sing-box'
 
 #service install path
 SERVICE_FILE_PATH='/etc/systemd/system/sing-box.service'
@@ -305,7 +308,31 @@ download_config() {
     fi
 }
 
-#install sing-box
+#backup config，this will be called when update sing-box
+backup_config() {
+    LOGD "开始备份sing-box配置文件..."
+    if [[ ! -f "${CONFIG_FILE_PATH}/config.json" ]]; then
+        LOGE "当前无可备份配置文件"
+        return 0
+    else
+        mv ${CONFIG_FILE_PATH}/config.json ${CONFIG_BACKUP_PATH}/config.json.bak
+    fi
+    LOGD "备份sing-box配置文件完成"
+}
+
+#backup config，this will be called when update sing-box
+restore_config() {
+    LOGD "开始还原sing-box配置文件..."
+    if [[ ! -f "${CONFIG_BACKUP_PATH}/config.json.bak" ]]; then
+        LOGE "当前无可备份配置文件"
+        return 0
+    else
+        mv ${CONFIG_BACKUP_PATH}/config.json.bak ${CONFIG_FILE_PATH}/config.json
+    fi
+    LOGD "还原sing-box配置文件完成"
+}
+
+#install sing-box,in this function we will download binary
 install_sing-box() {
     set_as_entrance
     LOGD "开始安装sing-box..."
@@ -314,7 +341,7 @@ install_sing-box() {
     else
         download_sing-box
     fi
-    download_config
+
     if [[ ! -f "${DOWNLAOD_PATH}/sing-box-${SING_BOX_VERSION}-linux-${OS_ARCH}.tar.gz" ]]; then
         clear_sing_box
         LOGE "could not find sing-box packages,plz check dowanload sing-box whether suceess"
@@ -352,7 +379,10 @@ update_sing-box() {
         LOGE "system did not install sing-box,please install it firstly"
         show_menu
     fi
-    download_sing-box && install_sing-box
+    #here we need back up config first,and then restore it after installation
+    backup_config
+    install_sing-box
+    restore_config
     if ! systemctl restart sing-box; then
         LOGE "update sing-box failed,please check logs"
         show_menu
@@ -642,7 +672,7 @@ show_menu() {
         exit 0
         ;;
     1)
-        install_sing-box && show_menu
+        download_config && install_sing-box && show_menu
         ;;
     2)
         update_sing-box && show_menu
