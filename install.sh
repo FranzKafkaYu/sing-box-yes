@@ -335,7 +335,7 @@ restore_config() {
     LOGD "还原sing-box配置文件完成"
 }
 
-#install sing-box,in this function we will download binary
+#install sing-box,in this function we will download binary,paremete $1 will be used as version if it's given
 install_sing-box() {
     set_as_entrance
     LOGD "开始安装sing-box..."
@@ -379,12 +379,17 @@ install_sing-box() {
 update_sing-box() {
     LOGD "开始更新sing-box..."
     if [[ ! -f "${SERVICE_FILE_PATH}" ]]; then
-        LOGE "system did not install sing-box,please install it firstly"
+        LOGE "当前系统未安装sing-box,请在安装sing-box的前提下使用更新命令"
         show_menu
     fi
     #here we need back up config first,and then restore it after installation
     backup_config
-    install_sing-box
+    #get the version paremeter
+    if [[ $# -ne 0 ]]; then
+        install_sing-box $1
+    else
+        install_sing-box
+    fi
     restore_config
     if ! systemctl restart sing-box; then
         LOGE "update sing-box failed,please check logs"
@@ -760,7 +765,11 @@ main() {
             clear_log
             ;;
         "update")
-            update_sing-box
+            if [[ $# == 2 ]]; then
+                update_sing-box $2
+            else
+                update_sing-box
+            fi
             ;;
         "install")
             if [[ $# == 2 ]]; then
