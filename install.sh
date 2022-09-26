@@ -292,9 +292,12 @@ download_sing-box() {
     fi
 }
 
-#dwonload office config examples
+#dwonload  config examples,this should be called when dowanload sing-box
 download_config() {
     LOGD "开始下载sing-box配置模板..."
+    if [[ ! -d ${CONFIG_FILE_PATH} ]]; then
+        mkdir -p ${CONFIG_FILE_PATH}
+    fi
     if [[ ! -f "${CONFIG_FILE_PATH}/config.json" ]]; then
         wget --no-check-certificate -O ${CONFIG_FILE_PATH}/config.json https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/main/shadowsocks2022/server_config.json
         if [[ $? -ne 0 ]]; then
