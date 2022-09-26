@@ -341,7 +341,7 @@ install_sing-box() {
     else
         download_sing-box
     fi
-
+    download_config
     if [[ ! -f "${DOWNLAOD_PATH}/sing-box-${SING_BOX_VERSION}-linux-${OS_ARCH}.tar.gz" ]]; then
         clear_sing_box
         LOGE "could not find sing-box packages,plz check dowanload sing-box whether suceess"
@@ -672,7 +672,7 @@ show_menu() {
         exit 0
         ;;
     1)
-        download_config && install_sing-box && show_menu
+        install_sing-box && show_menu
         ;;
     2)
         update_sing-box && show_menu
