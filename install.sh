@@ -628,6 +628,11 @@ enable_bbr() {
     echo ""
 }
 
+#for cert issue
+ssl_cert_issue(){
+    bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/BashScripts/main/SSLAutoInstall/SSLAutoInstall.sh)
+}
+
 #show help
 show_help() {
     echo "sing-box-v${SING_BOX_YES_VERSION} 管理脚本使用方法: "
@@ -721,9 +726,11 @@ show_menu() {
     E)
         disable_auto_clear_log
         ;;
-
     F)
         enable_bbr && show_menu
+        ;;
+    G)  
+        ssl_cert_issue
         ;;
     *)
         LOGE "请输入正确的选项 [0-G]"
