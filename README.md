@@ -88,6 +88,21 @@ sing-box update 1.1-beta8
 [INF] 可执行文件路径:/usr/local/bin/sing-box   
 
 ```   
+如果你厌倦了频繁输入数字,脚本也提供了一些快捷命令,具体如下：  
+```
+  sing-box              - 显示快捷菜单 (功能更多)  
+  sing-box start        - 启动 sing-box服务  
+  sing-box stop         - 停止 sing-box服务  
+  sing-box restart      - 重启 sing-box服务  
+  sing-box status       - 查看 sing-box 状态  
+  sing-box enable       - 设置 sing-box 开机自启  
+  sing-box disable      - 取消 sing-box 开机自启  
+  sing-box log          - 查看 sing-box 日志  
+  sing-box clear        - 清除 sing-box 日志  
+  sing-box update       - 更新 sing-box 服务  
+  sing-box install      - 安装 sing-box 服务  
+  sing-box uninstall    - 卸载 sing-box 服务  
+```
 
 # 使用说明  
 安装完sing-box后,你可能需要遵循以下几步方能正常使用：  
@@ -113,8 +128,9 @@ sing-box run -c client_config.json
 - [shadowsocks2022+shadowTLS](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/shadowsocks2022_with_shadowTLS)  
 - [trojan](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/trojan)  
 - [hysteria](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/hysteria)   
+- [vmess](https://github.com/FranzKafkaYu/sing-box-yes/tree/main/vmess)  
 
-使用时请自行按照模板修改服务端与客户端的配置.  
+使用时请自行按照模板修改服务端与客户端的配置    
 
 # 支持系统  
 - Ubuntu  
