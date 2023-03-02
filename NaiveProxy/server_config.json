@@ -36,15 +36,15 @@
             "sniff_timeout": "300ms",
             "users": [
                 {
-                    "username": "yourloginname",
-                    "password": "yourpassword"
+                    "username": "fuckmedayandnight",
+                    "password": "passwordrandom"
                 }
             ],
             "tls": {
                 "enabled": true,
-                "server_name": "youdomain.com",
-                "certificate_path": "/root/youdomain.com/fullchain.cer",
-                "key_path": "/root/youdomain.com/youdomain.com.key"
+                "server_name": "servername.com",
+                "certificate_path": "/root/fullchain.cer",
+                "key_path": "/root/private.key"
             }
         }
     ],
