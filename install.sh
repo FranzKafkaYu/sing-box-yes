@@ -594,7 +594,7 @@ clear_log() {
 #enable auto delete log，need file path as
 enable_auto_clear_log() {
     LOGI "设置sing-box 定时清除日志..."
-    local disabled=true
+    local disabled=false
     disabled=$(cat ${CONFIG_FILE_PATH}/config.json | jq .log.disabled | tr -d '"')
     if [[ ${disabled} == "true" ]]; then
         LOGE "当前系统未开启日志,将直接退出脚本"
