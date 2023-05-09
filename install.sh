@@ -256,9 +256,9 @@ create_or_delete_path() {
 #install some common utils
 install_base() {
     if [[ ${OS_RELEASE} == "ubuntu" || ${OS_RELEASE} == "debian" ]]; then
-        apt install wget tar -y
+        apt install wget tar jq -y
     elif [[ ${OS_RELEASE} == "centos" ]]; then
-        yum install wget tar -y
+        yum install wget tar jq -y
     fi
 }
 
@@ -594,11 +594,17 @@ clear_log() {
 #enable auto delete log，need file path as
 enable_auto_clear_log() {
     LOGI "设置sing-box 定时清除日志..."
+    local disabled=true
+    disabled=$(cat ${CONFIG_FILE_PATH}/config.json | jq .log.disabled | tr -d '"')
+    if [[ ${disabled} == "true" ]]; then
+        LOGE "当前系统未开启日志,将直接退出脚本"
+        exit 0
+    fi
     local filePath=''
     if [[ $# -gt 0 ]]; then
         filePath=$1
     else
-        filePath=${DEFAULT_LOG_FILE_SAVE_PATH}
+        filePath=$(cat ${CONFIG_FILE_PATH}/config.json | jq .log.output | tr -d '"')
     fi
     if [[ ! -f ${filePath} ]]; then
         LOGE "${filePath}不存在,设置sing-box 定时清除日志失败"
@@ -608,7 +614,7 @@ enable_auto_clear_log() {
     echo "0 0 * * 6 sing-box clear ${filePath}" >>/tmp/crontabTask.tmp
     crontab /tmp/crontabTask.tmp
     rm /tmp/crontabTask.tmp
-    LOGI "设置sing-box 定时清除日志成功"
+    LOGI "设置sing-box 定时清除日志${filePath}成功"
 }
 
 #disable auto dlete log
@@ -629,7 +635,7 @@ enable_bbr() {
 }
 
 #for cert issue
-ssl_cert_issue(){
+ssl_cert_issue() {
     bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/BashScripts/main/SSLAutoInstall/SSLAutoInstall.sh)
 }
 
@@ -729,7 +735,7 @@ show_menu() {
     F)
         enable_bbr && show_menu
         ;;
-    G)  
+    G)
         ssl_cert_issue
         ;;
     *)
