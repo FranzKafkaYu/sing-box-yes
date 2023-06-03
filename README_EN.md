@@ -32,11 +32,11 @@ sing-box is a universal proxy platform which supports many protocols.Currently i
 For more details,please check here:point_right:[official site](https://sing-box.sagernet.org/)
 # usage
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/milan2zist/sing-box-yes/master/install.sh)
 ```    
 If you want install specific version,plz use coomand line as follows:
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.0.3
+bash <(curl -Ls https://raw.githubusercontent.com/milan2zist/sing-box-yes/master/install.sh) install 1.0.3
 ```
 # quick start
 Just type `sing-box` to enter control menu,as follows showed here:
