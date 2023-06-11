@@ -647,16 +647,16 @@ show_help() {
     echo "------------------------------------------"
     echo "sing-box              - Display express menu (more function)"
     echo "sing-box start        - start up sing-boxService"
-    echo "sing-box stop         - stop  sing-box Service"
-    echo "sing-box restart      - Restart  sing-box Service"
-    echo "sing-box status       - Check  sing-box  Status"
-    echo "sing-box enable       - set up  sing-box auto-start"
-    echo "sing-box disable      - Disable  sing-box auto-start"
-    echo "sing-box log          - Check  sing-box Log "
-    echo "sing-box clear        - Remove  sing-box Log "
-    echo "sing-box update       - Update  sing-box Service"
-    echo "sing-box install      - Install  sing-box Service"
-    echo "sing-box uninstall    - Uninstalled  sing-box Service"
+    echo "sing-box stop         - stop sing-box Service"
+    echo "sing-box restart      - Restart sing-box Service"
+    echo "sing-box status       - Check sing-box  Status"
+    echo "sing-box enable       - set up sing-box auto-start"
+    echo "sing-box disable      - Disable sing-box auto-start"
+    echo "sing-box log          - Check sing-box Log "
+    echo "sing-box clear        - Remove sing-box Log "
+    echo "sing-box update       - Update sing-box Service"
+    echo "sing-box install      - Install sing-box Service"
+    echo "sing-box uninstall    - Uninstalled sing-box Service"
     echo "------------------------------------------"
 }
 
@@ -677,10 +677,10 @@ show_menu() {
   ${green}9.${plain} Remove sing-box Log 
   ${green}A.${plain} Please check  sing-box Configuration 
 ————————————————
-  ${green}B.${plain} set up  sing-box auto-start
-  ${green}C.${plain} Disable  sing-box auto-start
-  ${green}D.${plain} set up  sing-box  auto delete Log &Restart 
-  ${green}E.${plain} Disable  sing-box  auto delete Log &Restart 
+  ${green}B.${plain} set up sing-box auto-start
+  ${green}C.${plain} Disable sing-box auto-start
+  ${green}D.${plain} set up sing-box auto delete Log &Restart 
+  ${green}E.${plain} Disable sing-box auto delete Log &Restart 
 ————————————————
   ${green}F.${plain} 一Open one-click bbr 
   ${green}G.${plain} 一Key application SSL Certificate
