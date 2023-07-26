@@ -539,20 +539,16 @@ show_log() {
     if [[ $? == ${SING_BOX_STATUS_NOT_RUNNING} ]]; then
         journalctl -u sing-box.service -e --no-pager -f
     else
-        confirm "确认是否已在配置中开启日志记录,默认开启" "y"
-        if [[ $? -ne 0 ]]; then
-            LOGI "将从console中读取日志:"
-            journalctl -u sing-box.service -e --no-pager -f
+        local disabled=$(cat ${CONFIG_FILE_PATH}/config.json | jq .log.disabled | tr -d '"')
+
+        if [[ ${disabled} == "true" ]]; then
+            LOGI "当前未开启日志,请确认配置"
+            exit 1
         else
-            local tempLog=''
-            read -p "将从日志文件中读取日志,请输入日志文件路径,直接回车将使用默认路径": tempLog
-            if [[ -n ${tempLog} ]]; then
-                LOGI "日志文件路径:${tempLog}"
-                if [[ -f ${tempLog} ]]; then
-                    tail -f ${tempLog} -s 3
-                else
-                    LOGE "${tempLog}不存在,请确认配置"
-                fi
+            local filePath=$(cat ${CONFIG_FILE_PATH}/config.json | jq .log.output | tr -d '"')
+            if [[ ! -n ${filePath} || ! -f ${filePath} ]]; then
+                LOGE "日志${filePath}不存在,查看sing-box日志失败"
+                exit 1
             else
                 LOGI "日志文件路径:${DEFAULT_LOG_FILE_SAVE_PATH}"
                 tail -f ${DEFAULT_LOG_FILE_SAVE_PATH} -s 3
