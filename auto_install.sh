@@ -11,6 +11,33 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 # 创建/修改配置文件
 cat << EOF > /usr/local/etc/sing-box/config.json
 {
+    "dns": {
+        "servers": [
+            {
+                "address": "1.1.1.1"
+            },
+            {
+                "tag": "netflix",
+                "address": "1.1.1.1"
+            }
+        ],
+     "rules": [
+            {
+                "server": "netflix",
+                "geosite": [
+                    "netflix",
+                    "openai",
+                    "disney",
+                    "dazn",
+                    "amazon",
+                    "hbo",
+                    "now",
+                    "viu",
+                    "bilibili"
+                ]
+            }
+        ]
+    },
     "inbounds": [
         {
             "type": "hysteria2",
