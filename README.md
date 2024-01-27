@@ -1,6 +1,6 @@
 # 修改后的安装脚本
 ```
-curl -o- https://raw.githubusercontent.com/bi4nbn/sing-box_auto/main/install.sh | bash
+bash <(curl -Ls https://raw.githubusercontent.com/bi4nbn/sing-box_auto/main/install.sh)
 ```
 # 15秒内自动生成以下两种协议的帐号,主打就是一个便捷
 
