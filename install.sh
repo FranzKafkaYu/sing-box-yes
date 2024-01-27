@@ -11,18 +11,21 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 # 创建/修改配置文件
 cat << EOF > /usr/local/etc/sing-box/config.json
 {
+    "log": {
+        "disabled": false,
+        "level": "info",
+        "output": "/usr/local/sing-box/sing-box.log",
+        "timestamp": true
+    },
     "dns": {
-        "servers": [
-            {
+        "servers": [{
                 "address": "1.1.1.1"
-            },
-            {
+            }, {
                 "tag": "netflix",
-                "address": "1.1.1.1"
+                "address": "203.9.150.233"
             }
         ],
-     "rules": [
-            {
+        "rules": [{
                 "server": "netflix",
                 "geosite": [
                     "netflix",
@@ -38,13 +41,11 @@ cat << EOF > /usr/local/etc/sing-box/config.json
             }
         ]
     },
-    "inbounds": [
-        {
+    "inbounds": [{
             "type": "hysteria2",
             "listen": "::",
             "listen_port": 1538,
-            "users": [
-                {
+            "users": [{
                     "password": "nt0538"
                 }
             ],
@@ -57,13 +58,11 @@ cat << EOF > /usr/local/etc/sing-box/config.json
                 "certificate_path": "/etc/hysteria/cert.pem",
                 "key_path": "/etc/hysteria/private.key"
             }
-        },
-        {
+        }, {
             "type": "vless",
             "listen": "::",
             "listen_port": 2538,
-            "users": [
-                {
+            "users": [{
                     "uuid": "nt0538",
                     "flow": "xtls-rprx-vision"
                 }
@@ -85,8 +84,7 @@ cat << EOF > /usr/local/etc/sing-box/config.json
             }
         }
     ],
-    "outbounds": [
-        {
+    "outbounds": [{
             "type": "direct"
         }
     ]
