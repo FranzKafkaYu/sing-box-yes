@@ -22,7 +22,7 @@ cat << EOF > /usr/local/etc/sing-box/config.json
                 "address": "1.1.1.1"
             }, {
                 "tag": "netflix",
-                "address": "203.9.150.233"
+                "address": "218.166.6.206"
             }
         ],
         "rules": [{
