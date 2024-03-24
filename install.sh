@@ -11,83 +11,65 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 # 创建/修改配置文件
 cat << EOF > /usr/local/etc/sing-box/config.json
 {
-    "log": {
-        "disabled": false,
-        "level": "info",
-        "output": "/usr/local/sing-box/sing-box.log",
-        "timestamp": true
-    },
-    "dns": {
-        "servers": [{
-                "address": "1.1.1.1"
-            }, {
-                "tag": "netflix",
-                "address": "8.8.8.8"
-            }
-        ],
-        "rules": [{
-                "server": "netflix",
-                "geosite": [
-                    "netflix",
-                    "openai",
-                    "disney",
-                    "dazn",
-                    "amazon",
-                    "hbo",
-                    "now",
-                    "viu",
-                    "bilibili"
-                ]
-            }
-        ]
-    },
-    "inbounds": [{
-            "type": "hysteria2",
-            "listen": "::",
-            "listen_port": 1538,
-            "users": [{
-                    "password": "nt0538"
-                }
-            ],
-            "masquerade": "https://bing.com",
-            "tls": {
-                "enabled": true,
-                "alpn": [
-                    "h3"
-                ],
-                "certificate_path": "/etc/hysteria/cert.pem",
-                "key_path": "/etc/hysteria/private.key"
-            }
-        }, {
-            "type": "vless",
-            "listen": "::",
-            "listen_port": 2538,
-            "users": [{
-                    "uuid": "nt0538",
-                    "flow": "xtls-rprx-vision"
-                }
-            ],
-            "tls": {
-                "enabled": true,
-                "server_name": "www.tesla.com",
-                "reality": {
-                    "enabled": true,
-                    "handshake": {
-                        "server": "www.tesla.com",
-                        "server_port": 443
-                    },
-                    "private_key": "kPK8-OTeP2OmcLha67P476p-7V3-DHUxJ7EEMQ2vBWo",
-                    "short_id": [
-                        "0538"
-                    ]
-                }
-            }
-        }
-    ],
-    "outbounds": [{
-            "type": "direct"
-        }
-    ]
+	"log": {
+		"disabled": false,
+		"level": "info",
+		"output": "/usr/local/sing-box/sing-box.log",
+		"timestamp": true
+	},
+	"dns": {
+		"servers": [{
+			"address": "https://1.1.1.1/dns-query"
+		},
+		{
+			"tag": "netflix",
+			"address": "8.8.8.8"
+		}],
+		"rules": [{
+			"server": "netflix",
+			"geosite": ["netflix", "openai", "disney", "dazn", "amazon", "hbo", "now", "viu", "bilibili"]
+		}]
+	},
+	"inbounds": [{
+		"type": "hysteria2",
+		"listen": "::",
+		"listen_port": 1538,
+		"users": [{
+			"password": "nt0538"
+		}],
+		"masquerade": "https://bing.com",
+		"tls": {
+			"enabled": true,
+			"alpn": ["h3"],
+			"certificate_path": "/etc/hysteria/cert.pem",
+			"key_path": "/etc/hysteria/private.key"
+		}
+	},
+	{
+		"type": "vless",
+		"listen": "::",
+		"listen_port": 2538,
+		"users": [{
+			"uuid": "nt0538",
+			"flow": "xtls-rprx-vision"
+		}],
+		"tls": {
+			"enabled": true,
+			"server_name": "www.tesla.com",
+			"reality": {
+				"enabled": true,
+				"handshake": {
+					"server": "www.tesla.com",
+					"server_port": 443
+				},
+				"private_key": "kPK8-OTeP2OmcLha67P476p-7V3-DHUxJ7EEMQ2vBWo",
+				"short_id": ["0538"]
+			}
+		}
+	}],
+	"outbounds": [{
+		"type": "direct"
+	}]
 }
 EOF
 
