@@ -18,167 +18,151 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 		"timestamp": true
 	},
 	"dns": {
-		"servers": [{
-			"tag": "cloudflare",
-			"address": "https://1.1.1.1/dns-query",
-			"strategy": "ipv4_only",
-			"detour": "direct"
-		},
-		{
-			"tag": "video",
-			"address": "203.9.150.233",
-			"strategy": "ipv4_only",
-			"detour": "direct"
-		},
-		{
-			"tag": "block",
-			"address": "rcode://success"
-		}],
-		"rules": [{
-			"rule_set": ["geosite-category-ads-all"],
-			"server": "block"
-		},
-		{
-			"rule_set": ["geosite-netflix", "geoip-netflix", "geosite-now", "geosite-disney", "geosite-openai", "geosite-dazn", "geosite-tvb", "geosite-primevideo", "geosite-hbo"],
-			"server": "video"
-		}],
+		"servers": [
+			{
+				"tag": "cloudflare",
+				"address": "1.1.1.1",
+				"strategy": "ipv4_only",
+				"detour": "direct"
+			},
+			{
+				"tag": "video",
+				"address": "203.9.150.233",
+				"strategy": "ipv4_only",
+				"detour": "direct"
+			}
+		],
+		"rules": [
+			{
+				"rule_set": [
+					"geosite-netflix",
+					"geoip-netflix",
+					"geosite-now",
+					"geosite-disney",
+					"geosite-openai",
+					"geosite-dazn",
+					"geosite-tvb",
+					"geosite-primevideo",
+					"geosite-hbo"
+				],
+				"server": "video"
+			}
+		],
 		"final": "cloudflare",
 		"strategy": "",
 		"disable_cache": false,
 		"disable_expire": false
 	},
-	"inbounds": [{
-		"type": "hysteria2",
-		"listen": "::",
-		"listen_port": 1538,
-		"users": [{
-			"password": "nt0538"
-		}],
-		"masquerade": "https://bing.com",
-		"tls": {
-			"enabled": true,
-			"alpn": ["h3"],
-			"certificate_path": "/etc/hysteria/cert.pem",
-			"key_path": "/etc/hysteria/private.key"
-		}
-	},
-	{
-		"type": "vless",
-		"listen": "::",
-		"listen_port": 2538,
-		"users": [{
-			"uuid": "nt0538",
-			"flow": "xtls-rprx-vision"
-		}],
-		"tls": {
-			"enabled": true,
-			"server_name": "www.tesla.com",
-			"reality": {
+	"inbounds": [
+		{
+			"type": "hysteria2",
+			"listen": "::",
+			"listen_port": 1538,
+			"users": [
+				{
+					"password": "nt0538"
+				}
+			],
+			"masquerade": "https://bing.com",
+			"tls": {
 				"enabled": true,
-				"handshake": {
-					"server": "www.tesla.com",
-					"server_port": 443
-				},
-				"private_key": "kPK8-OTeP2OmcLha67P476p-7V3-DHUxJ7EEMQ2vBWo",
-				"short_id": ["0538"]
+				"alpn": [
+					"h3"
+				],
+				"certificate_path": "/etc/hysteria/cert.pem",
+				"key_path": "/etc/hysteria/private.key"
+			}
+		},
+		{
+			"type": "vless",
+			"listen": "::",
+			"listen_port": 2538,
+			"users": [
+				{
+					"uuid": "nt0538",
+					"flow": "xtls-rprx-vision"
+				}
+			],
+			"tls": {
+				"enabled": true,
+				"server_name": "www.tesla.com",
+				"reality": {
+					"enabled": true,
+					"handshake": {
+						"server": "www.tesla.com",
+						"server_port": 443
+					},
+					"private_key": "kPK8-OTeP2OmcLha67P476p-7V3-DHUxJ7EEMQ2vBWo",
+					"short_id": [
+						"0538"
+					]
+				}
 			}
 		}
-	}],
-	"outbounds": [{
-		"type": "direct",
-		"tag": "direct"
-	},
-	{
-		"type": "block",
-		"tag": "block"
-	},
-	{
-		"type": "dns",
-		"tag": "dns-out"
-	}],
+	],
+	"outbounds": [
+		{
+			"type": "direct",
+			"tag": "direct"
+		}
+	],
 	"route": {
-		"rules": [{
-			"protocol": "dns",
-			"outbound": "dns-out"
-		},
-		{
-			"ip_is_private": true,
-			"outbound": "direct"
-		},
-		{
-			"rule_set": ["geosite-category-ads-all"],
-			"outbound": "block"
-		}],
-		"rule_set": [{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-category-ads-all",
-			"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-netflix",
-			"url": "https://wiki.jokin.uk/geo/geosite/netflix.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geoip-netflix",
-			"url": "https://wiki.jokin.uk/geo/geoip/netflix.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-now",
-			"url": "https://wiki.jokin.uk/geo/geosite/now.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-disney",
-			"url": "https://wiki.jokin.uk/geo/geosite/disney.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-openai",
-			"url": "https://wiki.jokin.uk/geo/geosite/openai.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-dazn",
-			"url": "https://wiki.jokin.uk/geo/geosite/dazn.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-tvb",
-			"url": "https://wiki.jokin.uk/geo/geosite/tvb.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-primevideo",
-			"url": "https://wiki.jokin.uk/geo/geosite/primevideo.srs"
-		},
-		{
-			"type": "remote",
-			"format": "binary",
-			"download_detour": "direct",
-			"tag": "geosite-hbo",
-			"url": "https://wiki.jokin.uk/geo/geosite/hbo.srs"
-		}],
+		"rule_set": [
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-netflix",
+				"url": "https://wiki.jokin.uk/geo/geosite/netflix.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geoip-netflix",
+				"url": "https://wiki.jokin.uk/geo/geoip/netflix.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-now",
+				"url": "https://wiki.jokin.uk/geo/geosite/now.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-disney",
+				"url": "https://wiki.jokin.uk/geo/geosite/disney.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-openai",
+				"url": "https://wiki.jokin.uk/geo/geosite/openai.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-dazn",
+				"url": "https://wiki.jokin.uk/geo/geosite/dazn.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-tvb",
+				"url": "https://wiki.jokin.uk/geo/geosite/tvb.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-primevideo",
+				"url": "https://wiki.jokin.uk/geo/geosite/primevideo.srs"
+			},
+			{
+				"type": "remote",
+				"format": "binary",
+				"tag": "geosite-hbo",
+				"url": "https://wiki.jokin.uk/geo/geosite/hbo.srs"
+			}
+		],
 		"auto_detect_interface": true,
 		"final": "direct"
 	},
