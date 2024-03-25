@@ -22,11 +22,11 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 			"address": "https://1.1.1.1/dns-query"
 		},
 		{
-			"tag": "netflix",
+			"tag": "video",
 			"address": "8.8.8.8"
 		}],
 		"rules": [{
-			"server": "netflix",
+			"server": "video",
 			"geosite": ["netflix", "openai", "disney", "dazn", "amazon", "hbo", "now", "viu", "bilibili"]
 		}]
 	},
