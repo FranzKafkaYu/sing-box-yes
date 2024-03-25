@@ -20,15 +20,15 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 		"servers": [
 			{
 				"tag": "cloudflare",
-				"address": "1.1.1.1",
-				"strategy": "ipv4_only",
-				"detour": "direct"
+				"address": "1.1.1.1"
 			},
 			{
 				"tag": "video",
-				"address": "203.9.150.233",
-				"strategy": "ipv4_only",
-				"detour": "direct"
+				"address": "203.9.150.233"
+			},
+			{
+				"tag": "openai",
+				"address": "203.9.150.233"
 			}
 		],
 		"rules": [
@@ -38,17 +38,22 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 					"geoip-netflix",
 					"geosite-now",
 					"geosite-disney",
-					"geosite-openai",
 					"geosite-dazn",
 					"geosite-tvb",
 					"geosite-primevideo",
 					"geosite-hbo"
 				],
 				"server": "video"
+			},
+			{
+				"rule_set": [
+					"geosite-openai"
+				],
+				"server": "openai"
 			}
 		],
 		"final": "cloudflare",
-		"strategy": "ipv4_only",
+		"strategy": "prefer_ipv4",
 		"disable_cache": false,
 		"disable_expire": false
 	},
@@ -168,8 +173,7 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"url": "https://wiki.jokin.uk/geo/geosite/hbo.srs"
 			}
 		],
-		"auto_detect_interface": true,
-		"final": "direct"
+		"auto_detect_interface": true
 	},
 	"experimental": {
 		"cache_file": {
