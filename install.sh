@@ -12,7 +12,6 @@ bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/mast
 cat << EOF > /usr/local/etc/sing-box/config.json
 {
 	"log": {
-		"disabled": false,
 		"level": "info",
 		"output": "/usr/local/sing-box/sing-box.log",
 		"timestamp": true
@@ -49,13 +48,16 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 			}
 		],
 		"final": "cloudflare",
-		"strategy": "",
+		"strategy": "ipv4_only",
 		"disable_cache": false,
 		"disable_expire": false
 	},
 	"inbounds": [
 		{
 			"type": "hysteria2",
+			"sniff": true,
+			"sniff_timeout": "100ms",
+			"sniff_override_destination": true,
 			"listen": "::",
 			"listen_port": 1538,
 			"users": [
@@ -75,6 +77,9 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 		},
 		{
 			"type": "vless",
+			"sniff": true,
+			"sniff_timeout": "100ms",
+			"sniff_override_destination": true,
 			"listen": "::",
 			"listen_port": 2538,
 			"users": [
