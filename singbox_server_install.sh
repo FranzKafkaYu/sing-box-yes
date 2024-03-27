@@ -122,7 +122,7 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-netflix",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/netflix.srs"
 			},
 			{
 				"type": "remote",
@@ -134,43 +134,43 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-now",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/now.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/now.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-disney",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/disney.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/disney.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-openai",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/openai.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-dazn",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dazn.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/dazn.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-tvb",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tvb.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/tvb.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-primevideo",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/primevideo.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/primevideo.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-hbo",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/hbo.srs"
+				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/hbo.srs"
 			}
 		],
 		"auto_detect_interface": true
