@@ -1,4 +1,4 @@
-# 修改后的安装脚本
+# 修改后的服务端安装脚本
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/bi4nbn/sing-box_auto/main/install.sh)
 ```
@@ -10,7 +10,7 @@ hysteria2://nt0538@你服务器ip:1538?sni=bing.com&alpn=h2&insecure=1#Hysteria2
 ```
 vless://nt0538@你服务器ip:2538?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.tesla.com&fp=chrome&pbk=I8mdTZIKlw1eCiPei9KUqu4Kpxu1E6an3kXgQ8BSwEQ&sid=0538&type=tcp&headerType=none#Vless(tcp+reality)
 ```
-# 服务端一键安装脚本
+# 客户端安装脚本
 ```
 curl -O https://raw.githubusercontent.com/bi4nbn/sing-box_auto/main/singbox_cient_install.sh && chmod +x singbox_cient_install.sh && ./singbox_cient_install.sh
 ```
