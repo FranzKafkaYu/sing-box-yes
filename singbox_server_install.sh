@@ -122,55 +122,55 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-netflix",
-				"url": "https://wiki.jokin.uk/geo/geosite/netflix.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geoip-netflix",
-				"url": "https://wiki.jokin.uk/geo/geoip/netflix.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/netflix.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-now",
-				"url": "https://wiki.jokin.uk/geo/geosite/now.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/now.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-disney",
-				"url": "https://wiki.jokin.uk/geo/geosite/disney.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/disney.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-openai",
-				"url": "https://wiki.jokin.uk/geo/geosite/openai.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-dazn",
-				"url": "https://wiki.jokin.uk/geo/geosite/dazn.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dazn.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-tvb",
-				"url": "https://wiki.jokin.uk/geo/geosite/tvb.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tvb.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-primevideo",
-				"url": "https://wiki.jokin.uk/geo/geosite/primevideo.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/primevideo.srs"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-hbo",
-				"url": "https://wiki.jokin.uk/geo/geosite/hbo.srs"
+				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/hbo.srs"
 			}
 		],
 		"auto_detect_interface": true
