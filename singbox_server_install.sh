@@ -34,14 +34,7 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 		"rules": [
 			{
 				"rule_set": [
-					"geosite-netflix",
-					"geoip-netflix",
-					"geosite-now",
-					"geosite-disney",
-					"geosite-dazn",
-					"geosite-tvb",
-					"geosite-primevideo",
-					"geosite-hbo"
+					"geosite-netflix"
 				],
 				"server": "video"
 			},
@@ -122,55 +115,15 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-netflix",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/netflix.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geoip-netflix",
-				"url": "https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/netflix.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-now",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/now.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-disney",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/disney.srs"
+				"url": "https://wiki.jokin.uk/geo/geosite/netflix.srs",
+				"download_detour": "direct"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-openai",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/openai.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-dazn",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/dazn.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-tvb",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/tvb.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-primevideo",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/primevideo.srs"
-			},
-			{
-				"type": "remote",
-				"format": "binary",
-				"tag": "geosite-hbo",
-				"url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/hbo.srs"
+				"url": "https://wiki.jokin.uk/geo/geosite/openai.srs",
+				"download_detour": "direct"
 			}
 		],
 		"auto_detect_interface": true
@@ -186,5 +139,5 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 }
 EOF
 
-# 最后重启sing-box
+# 重启sing-box
 sing-box restart
