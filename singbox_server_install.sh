@@ -24,11 +24,11 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 			},
 			{
 				"tag": "video",
-				"address": "203.9.150.233"
+				"address": "1.1.1.1"
 			},
 			{
 				"tag": "openai",
-				"address": "203.9.150.233"
+				"address": "1.1.1.1"
 			}
 		],
 		"rules": [
