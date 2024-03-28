@@ -41,5 +41,5 @@ echo -e "${GREEN}Sing-box重启完毕.${NC}\n"
 echo -e "${GREEN}所有任务都已完成！${NC}"
 
 # 打印实时日志
-echo -e "${GREEN}以下是Sing-box实时日志...${NC}"
+echo -e "${GREEN}以下是Sing-box运行的实时日志...${NC}"
 journalctl -u sing-box -o cat -f
