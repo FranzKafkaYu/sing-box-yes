@@ -12,11 +12,11 @@
             },
             {
                 "tag": "video",
-                "address": "1.1.1.1"
+                "address": "202.62.242.19"
             },
             {
                 "tag": "openai",
-                "address": "1.1.1.1"
+                "address": "202.62.242.19"
             }
         ],
         "rules": [
