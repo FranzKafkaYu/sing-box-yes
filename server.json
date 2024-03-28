@@ -49,7 +49,6 @@
         {
             "type": "hysteria2",
             "sniff": true,
-            "sniff_override_destination": true,
             "listen": "::",
             "listen_port": 1538,
             "users": [
@@ -70,7 +69,6 @@
         {
             "type": "vless",
             "sniff": true,
-            "sniff_override_destination": true,
             "listen": "::",
             "listen_port": 2538,
             "users": [
