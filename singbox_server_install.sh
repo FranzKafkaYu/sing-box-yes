@@ -42,4 +42,4 @@ echo -e "${GREEN}所有任务都已完成！${NC}"
 
 # 打印实时日志
 echo -e "${GREEN}以下是Sing-box运行的实时日志.............${NC}"
-journalctl -u sing-box -o cat -f
+sing-box log
