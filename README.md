@@ -1,4 +1,4 @@
-# 修服务端一键安装脚本
+# 服务端一键安装脚本
 ```
 curl -sS https://raw.githubusercontent.com/bi4nbn/sing-box_auto/main/singbox_server_install.sh | bash
 ```
