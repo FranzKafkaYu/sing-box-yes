@@ -115,14 +115,14 @@ cat << EOF > /usr/local/etc/sing-box/config.json
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-netflix",
-				"url": "https://wiki.jokin.uk/geo/geosite/netflix.srs",
+				"url": "https://github.com/SagerNet/sing-geosite/raw/rule-set/geosite-netflix.srs",
 				"download_detour": "direct"
 			},
 			{
 				"type": "remote",
 				"format": "binary",
 				"tag": "geosite-openai",
-				"url": "https://wiki.jokin.uk/geo/geosite/openai.srs",
+				"url": "https://github.com/SagerNet/sing-geosite/raw/rule-set/geosite-openai.srs",				
 				"download_detour": "direct"
 			}
 		],
