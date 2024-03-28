@@ -24,14 +24,34 @@ mkdir -p /etc/hysteria && openssl ecparam -genkey -name prime256v1 -out /etc/hys
 echo -e "${GREEN}完成创建目录和SSL证书.${NC}\n"
 
 # 运行安装脚本
-echo -e "${GREEN}运行安装脚本...${NC}"
-bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.9.0-rc.3
-echo -e "${GREEN}完成安装脚本.${NC}\n"
+success=0
+for i in {1..3}; do
+  echo -e "${GREEN}运行安装脚本...${NC}"
+  bash <(curl -Ls https://raw.githubusercontent.com/FranzKafkaYu/sing-box-yes/master/install.sh) install 1.9.0-rc.3 && { success=1; break; }
+  echo -e "${RED}下载失败，再试一次.${NC}"
+done
+
+if [ $success -eq 1 ]; then
+  echo -e "${GREEN}完成安装脚本.${NC}\n"
+else
+  echo -e "${RED}下载失败，跳过下一部分.${NC}\n"
+  exit 1
+fi
 
 # 创建或修改配置文件
-echo -e "${GREEN}创建/修改配置文件...${NC}"
-wget -O /usr/local/etc/sing-box/config.json https://github.com/bi4nbn/sing-box_auto/raw/main/server.json
-echo -e "${GREEN}完成配置文件的创建/修改.${NC}\n"
+success=0
+for i in {1..3}; do
+  echo -e "${GREEN}创建/修改配置文件...${NC}"
+  wget -O /usr/local/etc/sing-box/config.json https://github.com/bi4nbn/sing-box_auto/raw/main/server.json && { success=1; break; }
+  echo -e "${RED}下载失败，再试一次.${NC}"
+done
+
+if [ $success -eq 1 ]; then
+  echo -e "${GREEN}完成配置文件的创建/修改.${NC}\n"
+else
+  echo -e "${RED}下载失败，跳过下一部分.${NC}\n"
+  exit 1
+fi
 
 # 重启Sing-box服务
 echo -e "${GREEN}重启Sing-box...${NC}"
