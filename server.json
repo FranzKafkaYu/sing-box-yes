@@ -23,7 +23,7 @@
             {
                 "rule_set": [
                     "geosite-netflix",
-                    "geosite-disney",
+                    "geosite-Disneyplus",
                     "geosite-dazn",
                     "geosite-tvb",
                     "geosite-primevideo",
@@ -35,7 +35,7 @@
             },
             {
                 "rule_set": [
-                    "geosite-chatgpt"
+                    "geosite-openai"
                 ],
                 "server": "openai"
             }
@@ -159,12 +159,6 @@
                 "format": "binary",
                 "tag": "geosite-viu",
                 "url": "https://github.com/SagerNet/sing-geosite/raw/rule-set/geosite-viu.srs"
-            },
-            {
-                "type": "remote",
-                "format": "binary",
-                "tag": "geosite-chatgpt",
-                "url": "https://github.com/SagerNet/sing-geosite/raw/rule-set/geosite-openai.srs"
             }
         ],
         "auto_detect_interface": true
