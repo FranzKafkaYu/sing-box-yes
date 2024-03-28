@@ -1,6 +1,6 @@
 {
     "log": {
-        "level": "error",
+        "level": "info",
         "output": "/usr/local/sing-box/sing-box.log",
         "timestamp": true
     },
